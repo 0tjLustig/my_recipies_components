@@ -1,202 +1,116 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useTable, usePagination } from 'react-table'
-
-import makeData from './makeData'
-
-const Styles = styled.div`
-  padding: 1rem;
-  table {
-    border-spacing: 0;
-    border: 1px solid black;
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-  .pagination {
-    padding: 0.5rem;
-  }
-`
-
-function Table({ columns, data }) {
-  //state and functions returned from useTable build the UI
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    prepareRow,
-    page,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize },
-  } = useTable(
-      {
-        columns,
-        data,
-        initialState: { pageIndex: 2 },
-      },
-      usePagination
-  )
-
-  // Render the UI
-  return (
-      <>
-      <pre>
-        <code>
-          {JSON.stringify(
-              {
-                pageIndex,
-                pageSize,
-                pageCount,
-                canNextPage,
-                canPreviousPage,
-              },
-              null,
-              2
-          )}
-        </code>
-      </pre>
-        <table {...getTableProps()}>
-          <thead>
-          {headerGroups.map(headerGroup => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                ))}
-              </tr>
-          ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row)
-            return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                  })}
-                </tr>
-            )
-          })}
-          </tbody>
-        </table>
-        {
-      }
-        <div className="pagination">
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-            {'<<'}
-          </button>{' '}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            {'<'}
-          </button>{' '}
-          <button onClick={() => nextPage()} disabled={!canNextPage}>
-            {'>'}
-          </button>{' '}
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-            {'>>'}
-          </button>{' '}
-          <span>
-          Page{' '}
-            <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-          <span>
-          | Go to page:{' '}
-            <input
-                type="number"
-                defaultValue={pageIndex + 1}
-                onChange={e => {
-                  const page = e.target.value ? Number(e.target.value) - 1 : 0
-                  gotoPage(page)
-                }}
-                style={{ width: '100px' }}
-            />
-        </span>{' '}
-          <select
-              value={pageSize}
-              onChange={e => {
-                setPageSize(Number(e.target.value))
-              }}
-          >
-            {[10, 20, 30, 40, 50].map(pageSize => (
-                <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
-                </option>
-            ))}
-          </select>
-        </div>
-      </>
-  )
-}
-
+//import logo from './logo.svg';
+import React from 'react';
+import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.min';
+global.jQuery = require('jquery');
+require('bootstrap');
+/*
 function App() {
-  const columns = React.useMemo(
-      () => [
-        {
-          Header: 'Name',
-          columns: [
-            {
-              Header: 'First Name',
-              accessor: 'firstName',
-            },
-            {
-              Header: 'Last Name',
-              accessor: 'lastName',
-            },
-          ],
-        },
-        {
-          Header: 'Info',
-          columns: [
-            {
-              Header: 'Age',
-              accessor: 'age',
-            },
-            {
-              Header: 'Visits',
-              accessor: 'visits',
-            },
-            {
-              Header: 'Status',
-              accessor: 'status',
-            },
-            {
-              Header: 'Profile Progress',
-              accessor: 'progress',
-            },
-          ],
-        },
-      ],
-      []
-  )
-
-  const data = React.useMemo(() => makeData(100000), [])
-
   return (
-      <Styles>
-        <Table columns={columns} data={data} />
-      </Styles>
-  )
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+          Hey what's up
+          Does my edit work
+        </a>
+      </header>
+      <body>
+      <table>
+        <tr>
+          <td>
+            Dying internally
+          </td>
+        </tr>
+      </table>
+
+      </body>
+    </div>
+  );
+}
+*/
+const imgUrls = [
+    "https://static8.depositphotos.com/1005629/806/i/600/depositphotos_8068134-stock-photo-pasta-with-olives-and-parsley.jpg",
+    "https://cdn.pixabay.com/photo/2017/05/07/08/56/pancakes-2291908__340.jpg",
+    "https://cms.greenhouse.dotdash.com/thmb/1j1QaDeEQF5kF8dZJviRP18lNpE=/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2006__03__shellfish-stock-method-1-c458b5bb690d463b90de1ac8f36031f1.jpg",
+    "https://restaurantden.com/wp-content/uploads/2017/09/pexels.jpg",
+    "https://media.istockphoto.com/photos/healthy-fresh-rainbow-colored-fruits-and-vegetables-background-picture-id1208790371?b=1&k=6&m=1208790371&s=170667a&w=0&h=R4qYkIvPFpYDzGMnuNN8ecabLlzaB2PoYlBXw_6fqXo="
+];
+
+class Carousel extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            currentImageIndex: 0
+        };
+
+        this.nextSlide = this.nextSlide.bind(this);
+        this.previousSlide = this.previousSlide.bind(this);
+    }
+
+    previousSlide () {
+        const lastIndex = imgUrls.length - 1;
+        const { currentImageIndex } = this.state;
+        const shouldResetIndex = currentImageIndex === 0;
+        const index =  shouldResetIndex ? lastIndex : currentImageIndex - 1;
+
+        this.setState({
+            currentImageIndex: index
+        });
+    }
+
+    nextSlide () {
+        const lastIndex = imgUrls.length - 1;
+        const { currentImageIndex } = this.state;
+        const shouldResetIndex = currentImageIndex === lastIndex;
+        const index =  shouldResetIndex ? 0 : currentImageIndex + 1;
+
+        this.setState({
+            currentImageIndex: index
+        });
+    }
+
+    render () {
+        return (
+            <div className="carousel">
+                <Arrow direction="left" clickFunction={ this.previousSlide } glyph="&#9664;" />
+                <ImageSlide url={ imgUrls[this.state.currentImageIndex] } />
+                <Arrow direction="right" clickFunction={ this.nextSlide } glyph="&#9654;" />
+            </div>
+        );
+    }
 }
 
-export default App
+const Arrow = ({ direction, clickFunction, glyph }) => (
+    <div
+        className={ `slide-arrow ${direction}` }
+        onClick={ clickFunction }>
+        { glyph }
+    </div>
+);
+
+const ImageSlide = ({ url }) => {
+    const styles = {
+        backgroundImage: `url(${url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+    };
+
+    return (
+        <div className="image-slide" style={styles}></div>
+    );
+}
+
+export default Carousel;
+
