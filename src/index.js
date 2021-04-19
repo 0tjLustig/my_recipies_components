@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import App2 from './App2';
-
+import Navbar from './Navbar';
+// add <Navbar />
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

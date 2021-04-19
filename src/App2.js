@@ -1,6 +1,6 @@
 import React from 'react';
-import ImageSlider from "./Components/ImageSlider";
-import {SliderData} from "./Components/SliderData";
+import ImageSlider from "./CarouselFunctions/ImageSlider";
+import {SliderData} from "./CarouselFunctions/SliderData";
 import './App.css';
 
 function App2() {

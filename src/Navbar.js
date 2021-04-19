@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../actions/auth';
+//import { logout } from '../../actions/auth';
 
 function Navbar({logout}) {
     return (
@@ -25,5 +25,8 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps)(Navbar);
+
+//uncomment when connected to backEnd
+//export default connect(mapStateToProps, { logout })(Navbar);
 
