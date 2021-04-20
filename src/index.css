@@ -1,5 +1,4 @@
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   sans-serif;
@@ -7,37 +6,56 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, #container, .carousel {
-  height:100%;
-  margin: 0;
-  width: 100%;
+.App {
+  text-align: center;
 }
 
-.image-slide {
-  height: 100%;
-  width: 100%;
-  transition: background-image .3s ease-in-out;
-}
-
-.slide-arrow {
-  color: #14B6D4;
-  cursor: pointer;
-  font-size: 2rem;
-  position: fixed;
-  top: 50%;
-}
-
-.slide-arrow.right {
-  right: 1rem;
-}
-
-.slide-arrow.left {
-  left: 1rem;
-}
-
-.full-height-navbar {
+.slider {
+  position: relative;
   height: 100vh;
-  padding-top: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.displayImage{
+  width: 800px;
+  height: 480px;
+  border-radius: 10px;
+}
+
+.right-arrow{
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #61dafb;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow{
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #61dafb;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide{
+  opacity: 0;
+  transition: 1s;
+  transition-timing-function: ease;
+}
+
+.slide-active{
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
 }
 
 .navbar-btn {
@@ -47,4 +65,27 @@ html, #container, .carousel {
 .nav {
   float: left;
   display: inline;
+}
+
+table {
+  border: 2px solid black;
+  border-spacing: 0;
+}
+#RecipeCardHead {
+  width:50%;
+}
+
+#RecipeCardData {
+  height:150px;
+}
+
+th {
+  margin: 0;
+  padding: 0.5rem;
+  border-bottom: 2px solid black;
+}
+
+td{
+  margin: 0;
+  padding: 0.5rem;
 }
