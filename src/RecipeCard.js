@@ -2,9 +2,9 @@ import React from 'react'
 
 function RecipeCard () {
     return(
-        <table>
+        <table style={{backgroundColor: "#ededed"}}>
             <thead>
-                <th id='RecipeCardHead'><b>recipe book name</b></th>
+                <th id='RecipeCardHead'>recipe book name</th>
             </thead>
                 <tr id='RecipeCardData'>
                     <td>recipe book description</td>
