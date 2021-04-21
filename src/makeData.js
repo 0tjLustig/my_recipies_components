@@ -9,17 +9,9 @@ const range = len => {
 }
 
 const newPerson = () => {
-    const statusChance = Math.random()
     return {
-        Recipe: namor.generate({ words: 1, numbers: 0 }),
-        Description: namor.generate({ words: 4, numbers: 0 }),
-        progress: Math.floor(Math.random() * 100),
-        status:
-            statusChance > 0.66
-                ? 'relationship'
-                : statusChance > 0.33
-                ? 'other'
-                : 'single',
+        Recipe: namor.generate({ words: 1, numbers: 1 }),
+        Description: namor.generate({ words: 4, numbers: 1 }),
     }
 }
 
