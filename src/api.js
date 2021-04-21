@@ -6,3 +6,5 @@ const api = axios.create({
         'x-auth-token': 'your-manually entered token'
     }
 });
+
+export default api;
