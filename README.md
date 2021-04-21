@@ -1,6 +1,5 @@
 # my_recipies_components
 Components for myRecipies page split up seperately
 ToDo: 
-Add TaskBar, Connect to backEnd, get JSX working
+Edit NavBar, Connect to backEnd for API calls, get JSX working
 
-NOTE: To run files, need to download node modules bootstrap, popper.js, jquery, react-table
