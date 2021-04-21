@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import App2 from './App2';
-import RecipeCard from './RecipeCard';
+import RecipeCardTable from './RecipeCardTable';
 import Navbar from './Navbar';
 // add <Navbar />
 import reportWebVitals from './reportWebVitals';
@@ -11,7 +11,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
       <App2 />
-      <RecipeCard />
+      <RecipeCardTable />
       <App />
   </React.StrictMode>,
   document.getElementById('root')

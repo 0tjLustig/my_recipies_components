@@ -65,14 +65,22 @@ body {
   display: inline;
 }
 
-table {
+#RecipeCardTableContainer{
+  position: relative;
+  left: 250px;
+  top:50px;
+}
+
+#RecipeCardTable {
   border: 2px solid black;
   border-spacing: 0;
+  position: relative;
 }
 
 #RecipeCardHead {
   width:50%;
   font-weight: bold;
+  border-bottom: 2px solid black;
 }
 
 #RecipeCardData {
@@ -81,8 +89,8 @@ table {
 
 th {
   margin: 0;
+  align: center;
   padding: 0.5rem;
-  border-bottom: 2px solid black;
 }
 
 td{

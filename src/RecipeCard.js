@@ -2,7 +2,7 @@ import React from 'react'
 
 function RecipeCard () {
     return(
-        <table style={{backgroundColor: "#ededed"}}>
+        <table style={{backgroundColor: "#ededed"}} id={"RecipeCardTable"}>
             <thead>
                 <th id='RecipeCardHead'>recipe book name</th>
             </thead>

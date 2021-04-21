@@ -6,7 +6,7 @@ import makeData from './makeData'
 
 const Styles = styled.div`
   padding-top: 5rem;
-  padding-left: 22rem;
+  padding-left: 14rem;
   position: relative;
   table {
     border-spacing: 0;
