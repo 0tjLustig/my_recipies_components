@@ -5,8 +5,8 @@ import { useTable, usePagination } from 'react-table'
 import makeData from './makeData'
 
 const Styles = styled.div`
-  padding-top: 5rem;
-  padding-left: 14rem;
+  padding-top: 10rem;
+  padding-left: 30rem;
   position: relative;
   table {
     border-spacing: 0;

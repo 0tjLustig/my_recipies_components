@@ -67,8 +67,9 @@ body {
 
 #RecipeCardTableContainer{
   position: relative;
-  left: 250px;
-  top:50px;
+  left: 435px;
+  top:30px;
+  border-spacing: 60px;
 }
 
 #RecipeCardTable {
