@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useTable, usePagination } from 'react-table'
+import api from './api.js'
 
 import makeData from './makeData'
 
