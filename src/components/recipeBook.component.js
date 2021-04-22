@@ -1,0 +1,200 @@
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateRecipeBook, deleteRecipeBook } from "../actions/recipeBookActions";
+import RecipeBookDataService from "../API_Services/CRUD_Recipe_Book_Services";
+
+class RecipeBook extends Component {
+    constructor(props) {
+        super(props);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.getRecipeBook = this.getRecipeBook.bind(this);
+        this.updateStatus = this.updateStatus.bind(this);
+        this.updateContent = this.updateContent.bind(this);
+        this.removeRecipeBook = this.removeRecipeBook().bind(this);
+
+        this.state = {
+            currentRecipeBook: {
+                id: null,
+                name: "",
+                description: "",
+                published: false,
+            },
+            message: "",
+        };
+    }
+
+    componentDidMount() {
+        this.getRecipeBook(this.props.match.params.id);
+    }
+
+    onChangeName(e) {
+        const name = e.target.value;
+
+        this.setState(function (prevState) {
+            return {
+                currentRecipeBook: {
+                    ...prevState.currentRecipeBook,
+                    name: name,
+                },
+            };
+        });
+    }
+
+    onChangeDescription(e) {
+        const description = e.target.value;
+
+        this.setState((prevState) => ({
+            currentRecipeBook: {
+                ...prevState.currentRecipeBook,
+                description: description,
+            },
+        }));
+    }
+
+    getRecipeBook(id) {
+        RecipeBookDataService.get(id)
+            .then((response) => {
+                this.setState({
+                    currentRecipeBook: response.data,
+                });
+                console.log(response.data);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    updateStatus(status) {
+        var data = {
+            id: this.state.currentRecipeBook.id,
+            name: this.state.currentRecipeBook.name,
+            description: this.state.currentRecipeBook.description,
+            published: status,
+        };
+
+        this.props
+            .updateRecipeBook(this.state.currentRecipeBook.id, data)
+            .then((response) => {
+                console.log(response);
+
+                this.setState((prevState) => ({
+                    currentRecipeBook: {
+                        ...prevState.currentRecipeBook,
+                        published: status,
+                    },
+                }));
+
+                this.setState({ message: "The status was updated successfully!" });
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    updateContent() {
+        this.props
+            .updateRecipeBook(this.state.currentRecipeBook.id, this.state.currentRecipeBook)
+            .then((response) => {
+                console.log(response);
+
+                this.setState({ message: "The recipeBook was updated successfully!" });
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    removeRecipeBook() {
+        this.props
+            .deleteRecipeBook(this.state.currentRecipeBook.id)
+            .then(() => {
+                this.props.history.push("/recipeBooks");
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }
+
+    render() {
+        const { currentRecipeBook } = this.state;
+
+        return (
+            <div>
+                {currentRecipeBook ? (
+                    <div className="edit-form">
+                        <h4>RecipeBook</h4>
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="title"
+                                    value={currentRecipeBook.name}
+                                    onChange={this.onChangeName}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="description">Description</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="description"
+                                    value={currentRecipeBook.description}
+                                    onChange={this.onChangeDescription}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>
+                                    <strong>Status:</strong>
+                                </label>
+                                {currentRecipeBook.published ? "Published" : "Pending"}
+                            </div>
+                        </form>
+
+                        {currentRecipeBook.published ? (
+                            <button
+                                className="badge badge-primary mr-2"
+                                onClick={() => this.updateStatus(false)}
+                            >
+                                UnPublish
+                            </button>
+                        ) : (
+                            <button
+                                className="badge badge-primary mr-2"
+                                onClick={() => this.updateStatus(true)}
+                            >
+                                Publish
+                            </button>
+                        )}
+
+                        <button
+                            className="badge badge-danger mr-2"
+                            onClick={this.removeRecipeBook}
+                        >
+                            Delete
+                        </button>
+
+                        <button
+                            type="submit"
+                            className="badge badge-success"
+                            onClick={this.updateContent}
+                        >
+                            Update
+                        </button>
+                        <p>{this.state.message}</p>
+                    </div>
+                ) : (
+                    <div>
+                        <br />
+                        <p>Please click on a RecipeBook...</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+}
+
+export default connect(null, { updateRecipeBook, deleteRecipeBook })(RecipeBook);

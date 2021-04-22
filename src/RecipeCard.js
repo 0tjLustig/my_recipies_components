@@ -1,5 +1,5 @@
 import React from 'react'
-import api from './api.js'
+import api from './API_Services/api.js'
 
 function RecipeCard () {
     return(

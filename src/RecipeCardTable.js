@@ -1,6 +1,6 @@
 import react from 'react';
 import RecipeCard from "./RecipeCard";
-import api from './api.js'
+import api from './API_Services/api.js'
 
 function RecipeCardTable() {
     return(
