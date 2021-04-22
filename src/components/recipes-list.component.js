@@ -4,6 +4,8 @@ import {retrieveRecipe} from "../actions/recipeActions";
 import {Link} from "react-router-dom";
 
 class RecipesListComponent extends Component {
+
+
     constructor(props) {
         super(props);
         this.refreshData = this.refreshData.bind(this);

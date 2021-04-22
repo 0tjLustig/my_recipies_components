@@ -4,6 +4,8 @@ import {retrieveRecipeBook} from "../actions/recipeBookActions";
 import {Link} from "react-router-dom";
 
 class RecipeBooksListComponent extends Component {
+
+
     constructor(props) {
         super(props);
         this.refreshData = this.refreshData.bind(this);

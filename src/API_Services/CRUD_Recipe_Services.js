@@ -1,24 +1,24 @@
-import API from './api'
+import api from './api'
 
 class RecipeDataService {
     getAll() {
-        return API.get("/recipes");
+        return api.get("http://localhost:5000/api/recipes");
     }
 
     get(name) {
-        return API.get(`/recipes/${name}`)
+        return api.get(`http://localhost:5000/api/recipes/${name}`)
     }
 
     create(data) {
-        return API.post("/recipes", data);
+        return api.post("http://localhost:5000/api/recipes", data);
     }
 
     update(name, data) {
-        return API.put(`/recipes/${name}`, data);
+        return api.put(`http://localhost:5000/api/recipes/${name}`, data);
     }
 
     delete(name) {
-        return API.delete(`/recipes/${name}`);
+        return api.delete(`http://localhost:5000/api/recipes/${name}`);
     }
 }
 
