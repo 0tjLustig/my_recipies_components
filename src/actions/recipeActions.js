@@ -8,9 +8,12 @@ import {
 import RecipeDataService from "../API_Services/CRUD_Recipe_Services";
 
 export const createRecipe = (name, ingredients, directions) => async (dispatch) => {
+    console.log(ingredients);
     try {
+        //create error occuring here
+        // need to make ingredients able to be passed in a URL
         const res = await RecipeDataService.create({ name, ingredients, directions });
-        console.log(res.data);
+        console.log(res);
         dispatch({
             type: CREATE_RECIPE,
             payload: res.data,

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../actions/recipeActions";
+//import qs from 'qs';
 
 class AddRecipe extends Component {
     constructor(props) {
@@ -12,11 +13,10 @@ class AddRecipe extends Component {
         this.newRecipe = this.newRecipe.bind(this);
 
         this.state = {
-            id: null,
+            //id: null,
             name: "",
             ingredients: [],
             directions: "",
-            published: false,
 
             submitted: false,
         };
@@ -42,12 +42,13 @@ class AddRecipe extends Component {
 
     saveRecipe() {
         const { name, ingredients, directions } = this.state;
-
+        console.log(ingredients);
+        encodeURIComponent(ingredients);
+        console.log(ingredients);
         this.props
             .createRecipe(name, ingredients, directions)
             .then((data) => {
                 this.setState({
-                    id: data.id,
                     name: data.name,
                     ingredients: data.ingredients,
                     directions: data.directions,
@@ -64,11 +65,10 @@ class AddRecipe extends Component {
 
     newRecipe() {
         this.setState({
-            id: null,
+            //id: null,
             name: "",
             ingredients:[],
             directions: "",
-            published: false,
 
             submitted: false,
         });

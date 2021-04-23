@@ -7,6 +7,8 @@ import AddRecipeBook from "./components/add-recipeBook.component";
 import RecipeBook from "./components/recipeBook.component";
 import RecipeBooksList from "./components/recipeBooks-list.component";
 
+//Unable to hit third route which would go to component that contains logic for updating and deleting a single record
+
 class App2 extends Component {
     render() {
         return (
@@ -21,7 +23,7 @@ class App2 extends Component {
                     <Switch>
                         <Route exact path={["/", "/recipe_books"]} component={RecipeBooksList} />
                         <Route exact path="/addRecipeBook" component={AddRecipeBook} />
-                        <Route path="3.92.28.166:5000/api/recipe_books/:_id" component={RecipeBook} />
+                        <Route path="/recipe_books/:_id" component={RecipeBook} />
                     </Switch>
                 </div>
             </Router>
