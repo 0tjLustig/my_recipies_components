@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -11,11 +11,17 @@ class App2 extends Component {
     render() {
         return (
             <Router>
+                <Link to={"/recipe_books"} className="nav-link">
+                    Recipe Books
+                </Link>
+                <Link to={"/addRecipeBook"} className="nav-link">
+                    Add New RecipeBook
+                </Link>
                 <div className="container mt-3">
                     <Switch>
-                        <Route exact path={["/", "/recipeBooks"]} component={RecipeBooksList} />
-                        <Route exact path="/add" component={AddRecipeBook} />
-                        <Route path="/recipeBooks/:id" component={RecipeBook} />
+                        <Route exact path={["/", "/recipe_books"]} component={RecipeBooksList} />
+                        <Route exact path="/addRecipeBook" component={AddRecipeBook} />
+                        <Route path="/recipeBooks/:_id" component={RecipeBook} />
                     </Switch>
                 </div>
             </Router>

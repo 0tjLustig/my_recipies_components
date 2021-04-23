@@ -7,7 +7,8 @@ class Recipe extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeIngredients = this.onChangeIngredients.bind(this);
+        this.onChangeDirections = this.onChangeDirections.bind(this);
         this.getRecipe = this.getRecipe.bind(this);
         this.updateStatus = this.updateStatus.bind(this);
         this.updateContent = this.updateContent.bind(this);
@@ -17,7 +18,8 @@ class Recipe extends Component {
             currentRecipe: {
                 id: null,
                 name: "",
-                description: "",
+                ingredients: [],
+                directions: "",
                 published: false,
             },
             message: "",
@@ -41,13 +43,26 @@ class Recipe extends Component {
         });
     }
 
-    onChangeDescription(e) {
-        const description = e.target.value;
+    onChangeIngredients(e) {
+        const ingredients = e.target.value;
+
+        this.setState(function (prevState) {
+            return {
+                currentRecipe: {
+                    ...prevState.currentRecipe,
+                    ingredients: ingredients,
+                },
+            };
+        });
+    }
+
+    onChangeDirections(e) {
+        const directions = e.target.value;
 
         this.setState((prevState) => ({
             currentRecipeBook: {
                 ...prevState.currentRecipe,
-                description: description,
+                directions: directions,
             },
         }));
     }
@@ -69,8 +84,8 @@ class Recipe extends Component {
         var data = {
             id: this.state.currentRecipe.id,
             name: this.state.currentRecipe.name,
+            ingredients: this.state.currentRecipe.ingredients,
             description: this.state.currentRecipe.description,
-            published: status,
         };
 
         this.props
@@ -130,45 +145,34 @@ class Recipe extends Component {
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="title"
+                                    id="name"
                                     value={currentRecipe.name}
                                     onChange={this.onChangeName}
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="description">Description</label>
+                                <label htmlFor="ingredients">Ingredients</label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    id="description"
-                                    value={currentRecipe.description}
-                                    onChange={this.onChangeDescription}
+                                    id="ingredients"
+                                    value={currentRecipe.ingredients}
+                                    onChange={this.onChangeIngredients}
                                 />
                             </div>
-
                             <div className="form-group">
-                                <label>
-                                    <strong>Status:</strong>
-                                </label>
-                                {currentRecipe.published ? "Published" : "Pending"}
+                                <label htmlFor="directions">Directions</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="directions"
+                                    value={currentRecipe.directions}
+                                    onChange={this.onChangeDirections}
+                                />
                             </div>
                         </form>
 
-                        {currentRecipe.published ? (
-                            <button
-                                className="badge badge-primary mr-2"
-                                onClick={() => this.updateStatus(false)}
-                            >
-                                UnPublish
-                            </button>
-                        ) : (
-                            <button
-                                className="badge badge-primary mr-2"
-                                onClick={() => this.updateStatus(true)}
-                            >
-                                Publish
-                            </button>
-                        )}
+
 
                         <button
                             className="badge badge-danger mr-2"

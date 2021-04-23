@@ -39,6 +39,7 @@ class RecipesListComponent extends Component {
         const {currentRecipe, currentIndex} = this.state;
         const {recipes} = this.props;
 
+
         return (
             <div className="list row">
                 <div className="col-md-6">
@@ -72,19 +73,19 @@ class RecipesListComponent extends Component {
                             </div>
                             <div>
                                 <label>
-                                    <strong>Description:</strong>
+                                    <strong>Ingredients:</strong>
                                 </label>{" "}
-                                {currentRecipe.description}
+
+                                {JSON.stringify(currentRecipe.ingredients)}
                             </div>
                             <div>
                                 <label>
-                                    <strong>Status:</strong>
+                                    <strong>Directions:</strong>
                                 </label>{" "}
-                                {currentRecipe.published ? "Published" : "Pending"}
+                                {currentRecipe.directions}
                             </div>
-
                             <Link
-                                to={"/recipes/" + currentRecipe.id}
+                                to={"/recipes/" + currentRecipe._id}
                                 className="badge badge-warning"
                             >
                                 Edit

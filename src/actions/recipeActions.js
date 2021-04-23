@@ -7,10 +7,10 @@ import {
 
 import RecipeDataService from "../API_Services/CRUD_Recipe_Services";
 
-export const createRecipe = (name, description) => async (dispatch) => {
+export const createRecipe = (name, ingredients, directions) => async (dispatch) => {
     try {
-        const res = await RecipeDataService.create({ name, description });
-
+        const res = await RecipeDataService.create({ name, ingredients, directions });
+        console.log(res.data);
         dispatch({
             type: CREATE_RECIPE,
             payload: res.data,
@@ -25,11 +25,13 @@ export const createRecipe = (name, description) => async (dispatch) => {
 export const retrieveRecipe = () => async (dispatch) => {
     try {
         const res = await RecipeDataService.getAll();
-
+        console.log('inside retrieveRecipe');
+        console.log(res.data);
         dispatch({
             type: RETRIEVE_RECIPE,
             payload: res.data,
         });
+
     } catch (err) {
         console.log(err);
     }

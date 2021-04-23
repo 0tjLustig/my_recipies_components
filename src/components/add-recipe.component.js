@@ -6,14 +6,16 @@ class AddRecipe extends Component {
     constructor(props) {
         super(props);
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeIngredients = this.onChangeIngredients.bind(this);
+        this.onChangeDirections = this.onChangeDirections.bind(this);
         this.saveRecipe = this.saveRecipe.bind(this);
         this.newRecipe = this.newRecipe.bind(this);
 
         this.state = {
             id: null,
             name: "",
-            description: "",
+            ingredients: [],
+            directions: "",
             published: false,
 
             submitted: false,
@@ -26,23 +28,30 @@ class AddRecipe extends Component {
         });
     }
 
-    onChangeDescription(e) {
+    onChangeIngredients(e) {
         this.setState({
-            description: e.target.value,
+            ingredients: e.target.value,
+        });
+    }
+
+    onChangeDirections(e) {
+        this.setState({
+            directions: e.target.value,
         });
     }
 
     saveRecipe() {
-        const { name, description } = this.state;
+        const { name, ingredients, directions } = this.state;
 
         this.props
-            .createRecipe(name, description)
+            .createRecipe(name, ingredients, directions)
             .then((data) => {
                 this.setState({
                     id: data.id,
                     name: data.name,
-                    description: data.description,
-                    published: data.published,
+                    ingredients: data.ingredients,
+                    directions: data.directions,
+
 
                     submitted: true,
                 });
@@ -57,7 +66,8 @@ class AddRecipe extends Component {
         this.setState({
             id: null,
             name: "",
-            description: "",
+            ingredients:[],
+            directions: "",
             published: false,
 
             submitted: false,
@@ -90,15 +100,28 @@ class AddRecipe extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="description">Description</label>
+                            <label htmlFor="ingredients">Ingredients</label>
                             <input
                                 type="text"
                                 className="form-control"
-                                id="description"
+                                id="ingredients"
                                 required
-                                value={this.state.description}
-                                onChange={this.onChangeDescription}
-                                name="description"
+                                value={this.state.ingredients}
+                                onChange={this.onChangeIngredients}
+                                name="ingredients"
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="directions">Directions</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="directions"
+                                required
+                                value={this.state.directions}
+                                onChange={this.onChangeDirections}
+                                name="directions"
                             />
                         </div>
 

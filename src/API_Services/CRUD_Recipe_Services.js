@@ -2,10 +2,10 @@ import api from './api'
 
 class RecipeDataService {
     getAll() {
-        //return api.get("http://3.92.28.166:5000/api/recipes/")
-        api.get("http://3.92.28.166:5000/api/recipes").then((response) =>{
-            console.log(JSON.stringify(response.data));
-        });
+        return api.get("http://3.92.28.166:5000/api/recipes/")
+        //api.get("http://3.92.28.166:5000/api/recipes").then((response) =>{
+        //    console.log(JSON.stringify(response.data));
+        //});
     }
 
     get(name) {

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -12,11 +12,17 @@ class App extends Component {
     render() {
         return (
             <Router>
+                <Link to={"/recipes"} className="nav-link">
+                    Recipes
+                </Link>
+                <Link to={"/addRecipe"} className="nav-link">
+                    Add New Recipe
+                </Link>
                 <div className="container mt-3">
                     <Switch>
-                        <Route exact path={["/", "/recipes"]} component={RecipesList} />
-                        <Route exact path="/add" component={AddRecipe} />
-                        <Route path="/recipes/:id" component={Recipe} />
+                        <Route exact path={["/", "/recipes"]} component={RecipesList}/>
+                        <Route exact path="/addRecipe" component={AddRecipe}/>
+                        <Route path="/recipes/:_id" component={Recipe}/>
                     </Switch>
                 </div>
             </Router>
