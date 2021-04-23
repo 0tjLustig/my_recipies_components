@@ -1,22 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import App2 from './App2';
-import Carousel from './Carousel';
-//import RecipeCardTable from './RecipeCardTable';
-import { Provider } from 'react-redux';
-import store from './store';
-//import Navbar from './Navbar';
-// add <Navbar />
+import MyRecipesPageFull from "./MyRecipesPageFull";
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <Provider store={store}>
-      <Carousel />
-      <App />
-      <App2 />
-  </Provider>,
+  <MyRecipesPageFull />,
   document.getElementById('root')
 );
 
