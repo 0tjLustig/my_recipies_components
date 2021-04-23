@@ -1,5 +1,3 @@
 # my_recipies_components
-Components for myRecipies page split up seperately
-ToDo: 
-Edit NavBar, Connect to backEnd for API calls, get JSX working
+Errors Currently Present In RecipeActions.js, RecipeBookActions.js, add-recipe.component.js, and add-recipeBook.component.js preventing Create from working, and the component housing Update and Delete logic from being accessable
 
