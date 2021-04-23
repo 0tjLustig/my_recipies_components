@@ -13,7 +13,7 @@ class AddRecipeBook extends Component {
         this.state = {
             id: null,
             name: "",
-            recipes: [],
+            recipes: [{}],
 
             submitted: false,
         };
@@ -55,7 +55,7 @@ class AddRecipeBook extends Component {
         this.setState({
             id: null,
             name: "",
-            recipes: [],
+            recipes: "",
 
             submitted: false,
         });

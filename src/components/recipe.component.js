@@ -10,7 +10,6 @@ class Recipe extends Component {
         this.onChangeIngredients = this.onChangeIngredients.bind(this);
         this.onChangeDirections = this.onChangeDirections.bind(this);
         this.getRecipe = this.getRecipe.bind(this);
-        this.updateStatus = this.updateStatus.bind(this);
         this.updateContent = this.updateContent.bind(this);
         this.removeRecipe = this.removeRecipe().bind(this);
 
@@ -20,14 +19,22 @@ class Recipe extends Component {
                 name: "",
                 ingredients: [],
                 directions: "",
-                published: false,
             },
             message: "",
         };
     }
 
+
+
     componentDidMount() {
-        this.getRecipe(this.props.match.params.id);
+        this.getRecipe(this.props.match.params._id);
+        console.log(this.props.match.params._id);
+        /*
+        setState(state) {
+            this.state.currentRecipe._id = ;
+        }
+
+         */
     }
 
     onChangeName(e) {
@@ -80,33 +87,6 @@ class Recipe extends Component {
             });
     }
 
-    updateStatus(status) {
-        let data = {
-            _id: this.state.currentRecipe._id,
-            name: this.state.currentRecipe.name,
-            ingredients: this.state.currentRecipe.ingredients,
-            description: this.state.currentRecipe.description,
-        };
-
-        this.props
-            .updateRecipe(this.state.currentRecipe._id, data)
-            .then((response) => {
-                console.log(response);
-
-                this.setState((prevState) => ({
-                    currentRecipe: {
-                        ...prevState.currentRecipe,
-                        published: status,
-                    },
-                }));
-
-                this.setState({ message: "The status was updated successfully!" });
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }
-
     updateContent() {
         this.props
             .updateRecipe(this.state.currentRecipe._id, this.state.currentRecipe)
@@ -121,6 +101,7 @@ class Recipe extends Component {
     }
 
     removeRecipe() {
+        console.log(this.state.currentRecipe);
         this.props
             .deleteRecipe(this.state.currentRecipe._id)
             .then(() => {

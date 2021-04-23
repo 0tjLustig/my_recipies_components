@@ -9,6 +9,8 @@ class RecipeDataService {
         return api.get(`/recipes/${name}`)
     }
 
+    //when link recieves data, it is not URLencoded thus the request fails
+
     create(data) {
         return api.post("/recipes", data);
     }

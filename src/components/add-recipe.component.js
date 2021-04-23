@@ -13,9 +13,9 @@ class AddRecipe extends Component {
         this.newRecipe = this.newRecipe.bind(this);
 
         this.state = {
-            //id: null,
+            _id: null,
             name: "",
-            ingredients: [],
+            ingredients: [{quantity: "", unit: "", itemName: ""}],
             directions: "",
 
             submitted: false,
@@ -42,9 +42,11 @@ class AddRecipe extends Component {
 
     saveRecipe() {
         const { name, ingredients, directions } = this.state;
+
+        console.log(name);
         console.log(ingredients);
-        encodeURIComponent(ingredients);
-        console.log(ingredients);
+        console.log(directions);
+
         this.props
             .createRecipe(name, ingredients, directions)
             .then((data) => {
@@ -65,9 +67,9 @@ class AddRecipe extends Component {
 
     newRecipe() {
         this.setState({
-            //id: null,
+            _id: null,
             name: "",
-            ingredients:[],
+            ingredients:[{quantity: "", unit: "", itemName: ""}],
             directions: "",
 
             submitted: false,
@@ -109,6 +111,42 @@ class AddRecipe extends Component {
                                 value={this.state.ingredients}
                                 onChange={this.onChangeIngredients}
                                 name="ingredients"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="ingredients">Quantity</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="quantity"
+                                required
+                                value={this.state.ingredients.quantity}
+                                onChange={this.onChangeIngredients}
+                                name="quantity"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="ingredients">Unit</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="ingredients"
+                                required
+                                value={this.state.ingredients.unit}
+                                onChange={this.onChangeIngredients}
+                                name="ingredients"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="ingredients">Item Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="itemName"
+                                required
+                                value={this.state.ingredients.itemName}
+                                onChange={this.onChangeIngredients}
+                                name="itemName"
                             />
                         </div>
 

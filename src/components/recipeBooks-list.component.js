@@ -34,30 +34,6 @@ class RecipeBooksListComponent extends Component {
         });
     }
 
-    updateContent() {
-        this.props
-            .updateRecipe(this.state.currentRecipe.id, this.state.currentRecipe)
-            .then((response) => {
-                console.log(response);
-
-                this.setState({ message: "The recipe was updated successfully!" });
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }
-
-    removeRecipe() {
-        this.props
-            .deleteRecipe(this.state.currentRecipe.id)
-            .then(() => {
-                this.props.history.push("/recipes");
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }
-
     render() {
         const {currentRecipeBook, currentIndex} = this.state;
         const {recipeBooks} = this.props;

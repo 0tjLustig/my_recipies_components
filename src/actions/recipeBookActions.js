@@ -9,8 +9,6 @@ import RecipeBookDataService from "../API_Services/CRUD_Recipe_Book_Services";
 
 export const createRecipeBook = (name, recipes) => async (dispatch) => {
     try {
-        //create error occuring here
-        // need to make recipes able to be passed in a URL
         const res = await RecipeBookDataService.create({ name, recipes });
 
         dispatch({
