@@ -15,7 +15,7 @@ class RecipeBook extends Component {
 
         this.state = {
             currentRecipeBook: {
-                id: null,
+                _id: null,
                 name: "",
                 description: "",
                 published: false,
@@ -25,7 +25,7 @@ class RecipeBook extends Component {
     }
 
     componentDidMount() {
-        this.getRecipeBook(this.props.match.params.id);
+        this.getRecipeBook(this.props.match.params._id);
     }
 
     onChangeName(e) {
@@ -66,15 +66,15 @@ class RecipeBook extends Component {
     }
 
     updateStatus(status) {
-        var data = {
-            id: this.state.currentRecipeBook.id,
+        let data = {
+            id: this.state.currentRecipeBook._id,
             name: this.state.currentRecipeBook.name,
             description: this.state.currentRecipeBook.description,
             published: status,
         };
 
         this.props
-            .updateRecipeBook(this.state.currentRecipeBook.id, data)
+            .updateRecipeBook(this.state.currentRecipeBook._id, data)
             .then((response) => {
                 console.log(response);
 
@@ -94,7 +94,7 @@ class RecipeBook extends Component {
 
     updateContent() {
         this.props
-            .updateRecipeBook(this.state.currentRecipeBook.id, this.state.currentRecipeBook)
+            .updateRecipeBook(this.state.currentRecipeBook._id, this.state.currentRecipeBook)
             .then((response) => {
                 console.log(response);
 
@@ -107,7 +107,7 @@ class RecipeBook extends Component {
 
     removeRecipeBook() {
         this.props
-            .deleteRecipeBook(this.state.currentRecipeBook.id)
+            .deleteRecipeBook(this.state.currentRecipeBook._id)
             .then(() => {
                 this.props.history.push("/recipeBooks");
             })
@@ -153,22 +153,6 @@ class RecipeBook extends Component {
                                 {currentRecipeBook.published ? "Published" : "Pending"}
                             </div>
                         </form>
-
-                        {currentRecipeBook.published ? (
-                            <button
-                                className="badge badge-primary mr-2"
-                                onClick={() => this.updateStatus(false)}
-                            >
-                                UnPublish
-                            </button>
-                        ) : (
-                            <button
-                                className="badge badge-primary mr-2"
-                                onClick={() => this.updateStatus(true)}
-                            >
-                                Publish
-                            </button>
-                        )}
 
                         <button
                             className="badge badge-danger mr-2"

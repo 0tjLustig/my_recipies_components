@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {retrieveRecipeBook} from "../actions/recipeBookActions";
-import {Link} from "react-router-dom";
 
 class RecipeBooksListComponent extends Component {
 
@@ -100,12 +99,12 @@ class RecipeBooksListComponent extends Component {
                                 </label>{" "}
                                 {currentRecipeBook.recipes}
                             </div>
-                            <Link
-                                to={"/recipes/" + currentRecipeBook._id}
+                            <a
+                                href={"/recipe_books/" + currentRecipeBook._id}
                                 className="badge badge-warning"
                             >
                                 Edit
-                            </Link>
+                            </a>
                         </div>
                     ) : (
                         <div>

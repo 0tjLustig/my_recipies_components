@@ -21,7 +21,7 @@ class App2 extends Component {
                     <Switch>
                         <Route exact path={["/", "/recipe_books"]} component={RecipeBooksList} />
                         <Route exact path="/addRecipeBook" component={AddRecipeBook} />
-                        <Route path="/recipeBooks/:_id" component={RecipeBook} />
+                        <Route path="3.92.28.166:5000/api/recipe_books/:_id" component={RecipeBook} />
                     </Switch>
                 </div>
             </Router>

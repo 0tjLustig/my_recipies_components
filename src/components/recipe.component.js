@@ -16,7 +16,7 @@ class Recipe extends Component {
 
         this.state = {
             currentRecipe: {
-                id: null,
+                _id: null,
                 name: "",
                 ingredients: [],
                 directions: "",
@@ -81,15 +81,15 @@ class Recipe extends Component {
     }
 
     updateStatus(status) {
-        var data = {
-            id: this.state.currentRecipe.id,
+        let data = {
+            _id: this.state.currentRecipe._id,
             name: this.state.currentRecipe.name,
             ingredients: this.state.currentRecipe.ingredients,
             description: this.state.currentRecipe.description,
         };
 
         this.props
-            .updateRecipe(this.state.currentRecipe.id, data)
+            .updateRecipe(this.state.currentRecipe._id, data)
             .then((response) => {
                 console.log(response);
 
@@ -109,7 +109,7 @@ class Recipe extends Component {
 
     updateContent() {
         this.props
-            .updateRecipe(this.state.currentRecipe.id, this.state.currentRecipe)
+            .updateRecipe(this.state.currentRecipe._id, this.state.currentRecipe)
             .then((response) => {
                 console.log(response);
 
@@ -122,7 +122,7 @@ class Recipe extends Component {
 
     removeRecipe() {
         this.props
-            .deleteRecipe(this.state.currentRecipe.id)
+            .deleteRecipe(this.state.currentRecipe._id)
             .then(() => {
                 this.props.history.push("/recipes");
             })
@@ -156,7 +156,7 @@ class Recipe extends Component {
                                     type="text"
                                     className="form-control"
                                     id="ingredients"
-                                    value={currentRecipe.ingredients}
+                                    value={JSON.stringify(currentRecipe.ingredients)}
                                     onChange={this.onChangeIngredients}
                                 />
                             </div>

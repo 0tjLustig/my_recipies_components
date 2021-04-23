@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {retrieveRecipe} from "../actions/recipeActions";
-import {Link} from "react-router-dom";
 
 class RecipesListComponent extends Component {
 
@@ -84,12 +83,12 @@ class RecipesListComponent extends Component {
                                 </label>{" "}
                                 {currentRecipe.directions}
                             </div>
-                            <Link
-                                to={"/recipes/" + currentRecipe._id}
+                            <a
+                                href={"/recipes/" + currentRecipe._id}
                                 className="badge badge-warning"
                             >
                                 Edit
-                            </Link>
+                            </a>
                         </div>
                     ) : (
                         <div>

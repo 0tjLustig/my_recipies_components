@@ -2,26 +2,23 @@ import api from './api'
 
 class RecipeDataService {
     getAll() {
-        return api.get("http://3.92.28.166:5000/api/recipes/")
-        //api.get("http://3.92.28.166:5000/api/recipes").then((response) =>{
-        //    console.log(JSON.stringify(response.data));
-        //});
+        return api.get("/recipes/")
     }
 
     get(name) {
-        return api.get(`http://3.92.28.166:5000/api/recipes/${name}`)
+        return api.get(`/recipes/${name}`)
     }
 
     create(data) {
-        return api.post("http://3.92.28.166:5000/api/recipes", data);
+        return api.post("/recipes", data);
     }
 
     update(name, data) {
-        return api.put(`http://3.92.28.166:5000/api/recipes/${name}`, data);
+        return api.put(`/recipes/${name}`, data);
     }
 
     delete(name) {
-        return api.delete(`http://3.92.28.166:5000/api/recipes/${name}`);
+        return api.delete(`/recipes/${name}`);
     }
 }
 
