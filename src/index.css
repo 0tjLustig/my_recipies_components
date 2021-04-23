@@ -65,29 +65,6 @@ body {
   display: inline;
 }
 
-#RecipeCardTableContainer{
-  position: relative;
-  left: 435px;
-  top:30px;
-  border-spacing: 60px;
-}
-
-#RecipeCardTable {
-  border: 2px solid black;
-  border-spacing: 0;
-  position: relative;
-}
-
-#RecipeCardHead {
-  width:50%;
-  font-weight: bold;
-  border-bottom: 2px solid black;
-}
-
-#RecipeCardData {
-  height:150px;
-}
-
 th {
   margin: 0;
   align: center;
