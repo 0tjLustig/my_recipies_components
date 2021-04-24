@@ -11,7 +11,7 @@ class Recipe extends Component {
         this.onChangeDirections = this.onChangeDirections.bind(this);
         this.getRecipe = this.getRecipe.bind(this);
         this.updateContent = this.updateContent.bind(this);
-        this.removeRecipe = this.removeRecipe().bind(this);
+        //this.removeRecipe = this.removeRecipe().bind(this);
 
         this.state = {
             currentRecipe: {
@@ -29,12 +29,6 @@ class Recipe extends Component {
     componentDidMount() {
         this.getRecipe(this.props.match.params._id);
         console.log(this.props.match.params._id);
-        /*
-        setState(state) {
-            this.state.currentRecipe._id = ;
-        }
-
-         */
     }
 
     onChangeName(e) {
@@ -101,7 +95,7 @@ class Recipe extends Component {
     }
 
     removeRecipe() {
-        console.log(this.state.currentRecipe);
+        console.log(this.state.currentRecipe._id, this.state.currentRecipe);
         this.props
             .deleteRecipe(this.state.currentRecipe._id)
             .then(() => {
