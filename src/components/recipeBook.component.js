@@ -9,16 +9,14 @@ class RecipeBook extends Component {
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.getRecipeBook = this.getRecipeBook.bind(this);
-        this.updateStatus = this.updateStatus.bind(this);
         this.updateContent = this.updateContent.bind(this);
-        this.removeRecipeBook = this.removeRecipeBook().bind(this);
+        //this.removeRecipeBook = this.removeRecipeBook().bind(this);
 
         this.state = {
             currentRecipeBook: {
                 _id: null,
                 name: "",
                 description: "",
-                published: false,
             },
             message: "",
         };
@@ -59,33 +57,6 @@ class RecipeBook extends Component {
                     currentRecipeBook: response.data,
                 });
                 console.log(response.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }
-
-    updateStatus(status) {
-        let data = {
-            id: this.state.currentRecipeBook._id,
-            name: this.state.currentRecipeBook.name,
-            description: this.state.currentRecipeBook.description,
-            published: status,
-        };
-
-        this.props
-            .updateRecipeBook(this.state.currentRecipeBook._id, data)
-            .then((response) => {
-                console.log(response);
-
-                this.setState((prevState) => ({
-                    currentRecipeBook: {
-                        ...prevState.currentRecipeBook,
-                        published: status,
-                    },
-                }));
-
-                this.setState({ message: "The status was updated successfully!" });
             })
             .catch((e) => {
                 console.log(e);
@@ -144,13 +115,6 @@ class RecipeBook extends Component {
                                     value={currentRecipeBook.description}
                                     onChange={this.onChangeDescription}
                                 />
-                            </div>
-
-                            <div className="form-group">
-                                <label>
-                                    <strong>Status:</strong>
-                                </label>
-                                {currentRecipeBook.published ? "Published" : "Pending"}
                             </div>
                         </form>
 
